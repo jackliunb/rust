@@ -71,10 +71,10 @@ fn handle_client(mut stream: TcpStream) {
             },
         };
 
-        // 如果输入的前4个字符串是exit则程序终止，为了防止越界所以需要先判断 s.len() >= 4
-        if s.len() >= 4 && s[0..4] == "exit".to_string() {
+        // 如果输入的前3个字符串是esc则程序终止，为了防止越界所以需要先判断 s.len() >= 3
+        if s.len() >= 3 && s[0..3] == "esc".to_string() {
             // 输出终止前的消息。
-            stream.write(b"stop!\n").unwrap();
+            stream.write(b"stop!!!!\n").unwrap();
             // 直接跳出 loop 循环，实际上这个链接也就终止了
             break;
         }
