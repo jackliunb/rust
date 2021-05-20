@@ -53,7 +53,7 @@ fn handle_client(mut stream: TcpStream) {
         // 输出调试信息
         println!("DEBUG::byte size: {}", bytes_read);
         // 如果输入流的字符长度为空直接退出循环。
-        if bytes_read == 2 {
+        if bytes_read == 0 {
             // 退出loop，实际上这里退出后整个方法也就退出了。
             break;
         }
