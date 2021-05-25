@@ -39,7 +39,7 @@ fn main() {
 
 // 线程调用的处理函数。
 /**
-* @param stream: TcpStream  传入的输入流
+* @param stream: TcpStream  传入的输入流  用mut因为是可变的
 */
 fn handle_client(mut stream: TcpStream) {
     
@@ -48,11 +48,11 @@ fn handle_client(mut stream: TcpStream) {
     let mut buf = [0; 512];
     // 建立一个循环，来反复读取客户的输入信息
     loop {
-        // 通过read方法
+        // 通过read方法从流里面读取内容
         let bytes_read = stream.read(&mut buf).expect("读取出现错误，这里直接中断程序运行");
         // 输出调试信息
         println!("DEBUG::byte size: {}", bytes_read);
-        // 如果输入流的字符长度为空直接退出循环。
+        // 如果输入流的字符长度为0说明已经结束了,则直接退出循环。
         if bytes_read == 0 {
             // 退出loop，实际上这里退出后整个方法也就退出了。
             break;
